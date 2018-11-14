@@ -14,12 +14,12 @@ pipeline {
       parallel {
         stage('Deploy to staging') {
           steps {
-            sh "scp **/target/*.war root@${params.tomcat_dev}:/usr/local/tomcat/webapps"
+            sh "scp -i /var/lib/jenkins/id_rsa **/target/*.war root@${params.tomcat_dev}:/usr/local/tomcat/webapps"
           }
         }
         stage('Deploy to production') {
           steps {
-            sh "scp **/target/*.war root@${params.tomcat_prod}:/usr/local/tomcat/webapps"
+            sh "scp -i /var/lib/jenkins/id_rsa **/target/*.war root@${params.tomcat_prod}:/usr/local/tomcat/webapps"
           }
         }
       }
