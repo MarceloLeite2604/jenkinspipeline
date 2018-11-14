@@ -10,6 +10,11 @@ pipeline {
   }
   
   stages{
+    stage('Build') {
+      steps {
+        sh 'mvn clean package'
+      }
+    }
     stage('Deployments') {
       parallel {
         stage('Deploy to staging') {
